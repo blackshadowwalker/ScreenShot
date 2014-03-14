@@ -109,13 +109,13 @@ UINT ThreadLogFile(LPVOID pParam){
 		struct tm *tmt =0;
 		tmt = localtime(&timer);
 		if(sleepTime<60)
-			sprintf(newFile,"%s\\%d-%d-%d_%d.%d.%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, tmt->tm_min, tmt->tm_sec );
+			sprintf(newFile,"%s\\%d-%d-%d_%d.%d.%d_%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, tmt->tm_min, tmt->tm_sec, timer );
 		else if(sleepTime<60*60)
-			sprintf(newFile,"%s\\%d-%d-%d_%d.%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, tmt->tm_min );
+			sprintf(newFile,"%s\\%d-%d-%d_%d.%d_%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, tmt->tm_min, timer );
 		else if(sleepTime<24*60*60)
-			sprintf(newFile,"%s\\%d-%d-%d_%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour );
+			sprintf(newFile,"%s\\%d-%d-%d_%d_%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, timer );
 		else
-			sprintf(newFile,"%s\\%d-%d-%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour );
+			sprintf(newFile,"%s\\%d-%d-%d_%d.log", CScreenShotApp::g_logFilePath, tmt->tm_year+1900, tmt->tm_mon+1, tmt->tm_mday, tmt->tm_hour, timer );
 		rename(CScreenShotApp::EventLogFile, newFile);
 
 		CScreenShotApp::OpenLog();
